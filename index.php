@@ -82,6 +82,11 @@ if (isset($_GET['edit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./assets/Table/Table.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
@@ -108,10 +113,10 @@ if (isset($_GET['edit'])) {
                         <label>Customer Address</label>
                         <input name="Address" type="text" value="<?php echo $Address ?>" placeholder="Address" class="form-control">
                     </div>
-                    <?php if($edit): ?>
-                    <button name="Update" class="btn btn-block btn-info w-50 mx-auto my-2 ">Update</button>
+                    <?php if ($edit) : ?>
+                        <button name="Update" class="btn btn-block btn-info w-50 mx-auto my-2 ">Update</button>
                     <?php else : ?>
-                    <button name="Send" class="btn btn-block btn-primary w-50 mx-auto my-2 ">Send Data</button>
+                        <button name="Send" class="btn btn-block btn-primary w-50 mx-auto my-2 ">Send Data</button>
                     <?php endif ?>
                 </form>
 
@@ -120,7 +125,7 @@ if (isset($_GET['edit'])) {
     </div>
 
 
-    <div class="container col-8 my-3">
+    <!-- <div class="container col-8 my-3">
         <div class="card">
             <div class="card-body">
 
@@ -152,7 +157,42 @@ if (isset($_GET['edit'])) {
                 </table>
             </div>
         </div>
+    </div> -->
+
+
+    <div class="">
+        <div class="container">
+            <div class="table-responsive custom-table-responsive">
+                <table class="table custom-table">
+                    <thead style="background-color: #111;">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone</th>
+                            <th class="text-center" scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($selected as $data) { ?>
+
+                            <tr scope="row">
+                                <td><?php echo $data['id'];  ?></td>
+                                <td><?php echo $data['name'];  ?></td>
+                                <td><?php echo $data['address'];  ?></td>
+                                <td><?php echo $data['phone'];  ?></td>
+                                <td class="text-center"><a href="index.php?delete=<?php echo $data['id'] ?>" class="btn btn-danger ">Delete</a>
+                                    <a href="index.php?edit=<?php echo $data['id'] ?>" class="btn btn-info ">Update</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
 
 
 
